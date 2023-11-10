@@ -10,7 +10,7 @@ jobs:
       max-parallel: 100
       matrix:
         cbsinit_repo: ['https://github.com/ader1990/cloudbase-init-1']
-        cbsinit_branch: ['replace_ssl_with_crypt']
+        cbsinit_branch: ['master']
 
     steps:
     - uses: actions/checkout@v1
@@ -26,7 +26,7 @@ jobs:
       run: 
         powershell.exe .\BuildAutomation\BuildCloudbaseInitSetup.ps1 ^
             -ClonePullInstallerRepo:$false -CreateZip:$false ^
-            -PythonVersion "3.10" ^
+            -PythonVersion "3.11_6" ^
             -SetVCEnvVars:$true -RelativePythonDirPath:$true ^
             -CloudbaseInitRepoUrl ${{ matrix.cbsinit_repo }} -CloudbaseInitRepoBranch ${{ matrix.cbsinit_branch }}
     - uses: actions/upload-artifact@v1
