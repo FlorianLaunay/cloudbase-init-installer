@@ -27,6 +27,7 @@ SetVCVars "2019" "x86_amd64"
 
 # Use v140 with GitHub workflows env
 ReplaceVSToolSet $VSPlatformToolSet
+
 # Use VS2015 with GitHub workflows env
 #Replace-WixToolSet $WixPlatformToolSet
 
@@ -171,7 +172,7 @@ try
     }
 
     cd $cloudbaseInitInstallerDir
-    
+
     & msbuild.exe CloudbaseInitSetup.sln /m /p:Platform=$platform /p:Configuration=`"Release`"  /p:DefineConstants=`"PythonSourcePath=$python_dir`;CarbonSourcePath=Carbon`;Version=$msi_version`;VersionStr=$version`"
     if ($LastExitCode) { throw "MSBuild failed" }
 
